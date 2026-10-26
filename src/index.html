@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="popup.js"></script>
+  </head>
+
+  <body class="popup-body">
+    <header class="popup-header">
+      <div class="brand">
+        <span class="status-dot" id="status-dot"></span>
+        <span class="brand-title">🛡️ PacGuard</span>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="shortcuts">go/ Links</button>
+        <button class="tab-btn" data-tab="blocklist">Blocklist</button>
+        <button class="tab-btn" data-tab="pac">PAC View</button>
+      </div>
+    </header>
+
+    <!-- Tab 1: go/ Links (Line 1: go link, Line 2: URL) -->
+    <section id="panel-shortcuts" class="tab-panel active">
+      <div class="format-guide">
+        <span>Format: <code>slug</code> (or <code>go/slug</code>) on line 1, target URL on line 2.</span>
+        <span class="badge" id="shortcuts-count">0 links</span>
+      </div>
+      <div class="editor-wrapper">
+        <div class="line-gutter" id="shortcuts-gutter">1</div>
+        <textarea
+          id="shortcuts-textarea"
+          class="code-textarea"
+          spellcheck="false"
+          placeholder="# Example:&#10;wiki&#10;wikipedia.org&#10;&#10;gh&#10;github.com/carlbernal"
+        ></textarea>
+      </div>
+    </section>
+
+    <!-- Tab 2: Blocklist (Newline separated domains) -->
+    <section id="panel-blocklist" class="tab-panel hidden">
+      <div class="format-guide">
+        <span>Format: One domain per line (e.g. <code>reddit.com</code>). Blocks all subdomains.</span>
+        <span class="badge" id="blocklist-count">0 blocked</span>
+      </div>
+      <div class="editor-wrapper">
+        <div class="line-gutter" id="blocklist-gutter">1</div>
+        <textarea
+          id="blocklist-textarea"
+          class="code-textarea"
+          spellcheck="false"
+          placeholder="# One domain per line:&#10;reddit.com&#10;twitter.com&#10;x.com"
+        ></textarea>
+      </div>
+    </section>
+
+    <!-- Tab 3: Live Generated PAC Script -->
+    <section id="panel-pac" class="tab-panel hidden">
+      <div class="format-guide">
+        <span>Live generated <code>FindProxyForURL(url, host)</code> active in Chrome:</span>
+      </div>
+      <pre id="pac-preview" class="pac-preview"></pre>
+    </section>
+
+    <footer id="toast" class="toast">Ready</footer>
+  </body>
+</html>

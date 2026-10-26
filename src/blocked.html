@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Blocked — PacGuard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="blocked.js"></script>
+  </head>
+
+  <body class="blocked-body">
+    <main class="blocked-card">
+      <div class="blocked-badge">🛡️ PACGUARD ACCESS CONTROL</div>
+      <h1>Access to this site is restricted</h1>
+      <p class="blocked-lead">
+        Your personal productivity policy has blocked access to
+        <strong id="blocked-domain">this domain</strong>.
+      </p>
+
+      <div class="blocked-details">
+        <div class="detail-row">
+          <span class="detail-label">Requested URL</span>
+          <code id="blocked-url">—</code>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Enforcement</span>
+          <code>PAC Proxy Sinkhole (127.0.0.1:65535) + DNR Policy</code>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Timestamp</span>
+          <code id="blocked-time">—</code>
+        </div>
+      </div>
+
+      <p class="blocked-hint">
+        To unblock this site, click the <strong>PacGuard</strong> extension icon in your Chrome toolbar and remove the domain from the <strong>Blocklist</strong> tab.
+      </p>
+
+      <div class="blocked-actions">
+        <button id="back-btn" class="btn-primary">Go Back</button>
+      </div>
+    </main>
+  </body>
+</html>

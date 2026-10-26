@@ -1,0 +1,8 @@
+{
+  "name": "pacguard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "zip": "cd src && zip -r -FS ../build.zip *"
+  }
+}

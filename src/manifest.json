@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "PacGuard",
+  "version": "0.1.0",
+  "description": "Personal productivity control plane: go/ shortlinks and PAC + DNR domain blocking.",
+  "homepage_url": "https://github.com/carlbernal/pacguard",
+  "icons": {
+    "16": "img/shield-16.png",
+    "32": "img/shield-32.png",
+    "48": "img/shield-48.png",
+    "128": "img/shield-128.png"
+  },
+  "permissions": [
+    "proxy",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "webNavigation",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "PacGuard"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "blocked.html",
+        "blocked.js",
+        "styles.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
