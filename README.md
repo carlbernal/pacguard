@@ -1,41 +1,16 @@
 # PacGuard
 
-A Chrome extension (Manifest V3) for personal productivity & navigation control, using a hybrid **PAC (`chrome.proxy`) + `declarativeNetRequest`** control plane and a fast, auto-saving `<textarea>` popup UI inspired by [Charon](https://github.com/carlbernal/charon).
+A Chrome extension for personal productivity and navigation control, combining **`go/` shortlinks** with **PAC + domain blocking** in a fast, auto-saving plain-text editor inspired by [Charon](https://github.com/carlbernal/charon).
 
-## Features
+**[Chrome Web Store — PacGuard](https://chromewebstore.google.com/detail/pacguard/feeonodgnmninmebcmbiffgaeclmjkma)**
 
-1. **`go/` Shortlinks (No Omnibox keyword required)**
-   - Navigate directly to `go/<slug>` (or `http://go/<slug>`) to reconstruct and redirect to your target URL.
-   - Subpaths are forwarded automatically (e.g., `go/wiki/Proxy_auto-config` -> `https://wikipedia.org/Proxy_auto-config`).
-   - Configured in the popup `<textarea>` using a plain-text pair format (no JSON required):
-     ```text
-     # Line 1: go/ link slug
-     # Line 2: Target website URL
+## Overview
 
-     wiki
-     wikipedia.org
+- **`go/` Shortlinks**: Navigate directly to `go/<slug>` (with automatic subpath forwarding, e.g. `go/wiki/Proxy_auto-config`) using simple two-line slug/URL pairs.
+- **Domain Blocklist & Sinkhole**: Block distracting domains and all their subdomains across both main-frame navigations (redirected to a local restriction page) and background/WebSocket connections via an auto-generated PAC script.
+- **Plain-Text Editor with Live Linting**: Edit shortlinks and blocked domains in a numbered `<textarea>` with instant validation and auto-save.
 
-     gh
-     github.com/carlbernal
-     ```
+## License
 
-2. **Domain Blocklist + Warning Page**
-   - Configured in the popup `<textarea>` as a newline-separated list of domains:
-     ```text
-     # One domain per line
-     reddit.com
-     twitter.com
-     x.com
-     ```
-   - **PAC Layer (`chrome.proxy`)**: Dynamically generates `FindProxyForURL(url, host)` to sinkhole blocked domains and all subdomains (`PROXY 127.0.0.1:65535`) for non-main-frame / WebSocket / background connections.
-   - **Navigation Layer (`declarativeNetRequest` + `webNavigation`)**: Redirects main-frame navigations to an access restriction warning page (`blocked.html`).
+[MIT](LICENSE) — see [Privacy Policy](PRIVACY_POLICY.md).
 
-3. **Real-Time Linter & Line Gutter**
-   - Auto-saves as you type (`600ms` debounce) and when the popup closes.
-   - Highlights the exact line number in the gutter (`!`) with a descriptive guide at the bottom of the popup if a line has a formatting mistake (missing target URL, multiple URLs on one line, invalid domain, etc.).
-
-## Installation (Chrome Developer Mode)
-
-1. Open `chrome://extensions/` in Google Chrome.
-2. Enable **Developer mode** (top-right toggle).
-3. Click **Load unpacked** and select the `/Users/carlbernal/repo/pacguard/src` directory.
